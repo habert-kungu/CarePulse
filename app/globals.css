@@ -183,7 +183,7 @@
 
   /* =====  SHADCN OVERRIDES */
   .shad-primary-btn {
-    @apply bg-green-500 text-white !important;
+    @apply bg-green-500 rounded-md text-white !important;
   }
 
   .shad-danger-btn {
@@ -348,8 +348,6 @@
 .PhoneInputInput::placeholder {
   color: #1a1d21;
 }
-
-
 
 @layer base {
   * {
