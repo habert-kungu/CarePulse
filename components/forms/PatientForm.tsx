@@ -3,9 +3,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import CustomFormField from "../CustomFormField";
+import SubmitButton from "../SubmitButton";
+import { UserFormValidation } from "@/lib/validation";
+import { useState } from "react";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -17,19 +19,10 @@ export enum FormFieldType {
   SKELETON = "skeleton",
 }
 
-const formSchema = z.object({
-  name: z
-    .string()
-    .min(2, { message: "Full name must be at least 2 characters." }),
-  email: z.string().email({ message: "Invalid email address." }),
-  phone: z
-    .string()
-    .min(10, { message: "Phone number must be at least 10 digits." }),
-});
-
 const PatientForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const [isLoading, setIsLoading] = useState(false);
+  const form = useForm<z.infer<typeof UserFormValidation>>({
+    resolver: zodResolver(UserFormValidation),
     defaultValues: {
       name: "",
       email: "",
@@ -37,8 +30,12 @@ const PatientForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  function onSubmit(values: z.infer<typeof UserFormValidation>) {
+    setIsLoading(true);
+    try {
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -75,7 +72,7 @@ const PatientForm = () => {
           placeholder="24 555 443"
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
   );

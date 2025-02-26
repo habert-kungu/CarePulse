@@ -9,6 +9,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
 import { Input } from "@/components/ui/input";
 import Image from "next/image"; // Assuming Next.js, adjust if different
 
@@ -39,7 +40,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   switch (fieldType) {
     case FormFieldType.INPUT:
       return (
-        <div className="flex rounded-md border border-dark-500 bg-dark-400">
+        <div className="flex rounded-[6px] border border-dark-500 bg-dark-400">
           {iconSrc && (
             <Image
               src={iconSrc}
@@ -60,7 +61,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       );
     case FormFieldType.PHONE_INPUT:
       return (
-        <FormControl>
+        <FormControl className="flex rounded-[6px] border border-dark-500 bg-dark-400">
           <PhoneInput
             defaultCountry="US"
             placeholder={placeholder}
