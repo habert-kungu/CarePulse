@@ -15,7 +15,7 @@ import Image from "next/image"; // Assuming Next.js, adjust if different
 
 import { FormFieldType } from "./forms/PatientForm";
 import { Control } from "react-hook-form";
-
+import { E164Number } from "libphonenumber-js/core";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 

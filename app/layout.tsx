@@ -1,41 +1,36 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
+
 import { cn } from "@/lib/utils";
 
-const fontSans = Plus_Jakarta_Sans({
+const fontSans = FontSans({
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "CarePulse ",
-  description: "A Healthcare management system ",
+  title: "CarePulse",
+  description:
+    "A healthcare patient management System designed to streamline patient registration, appointment scheduling, and medical records management for healthcare providers.",
+  icons: {
+    icon: "/assets/icons/logo-icon.svg",
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body
         className={cn(
-          "min-h-screen bg-dark-300 font-sans antialiased ",
+          "min-h-screen bg-dark-300 font-sans antialiased",
           fontSans.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ThemeProvider attribute="class">{children}</ThemeProvider>
       </body>
     </html>
   );
